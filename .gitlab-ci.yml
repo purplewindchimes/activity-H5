@@ -1,0 +1,23 @@
+cache:
+  paths:
+    - node_modules/
+
+staging:
+  tags:
+    - staging
+  script:
+    - chmod u+x ./deploy/base.sh
+    - chmod u+x ./deploy/cs.sh
+    - ./deploy/cs.sh
+  only:
+    - master@html5/h5-main-site
+
+release:
+  tags:
+    - staging
+  script:
+    - chmod u+x ./deploy/base.sh
+    - chmod u+x ./deploy/release.sh
+    - ./deploy/release.sh
+  only:
+    - tags@html5/h5-main-site
